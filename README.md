@@ -14,8 +14,10 @@ An example of the implementation of scary things. (Scary - because the code is s
 [ThunderKit](https://github.com/PassivePicasso/ThunderKit) - game dll import & asset build script
 [PML](https://github.com/PULSAR-Modders/pulsar-mod-loader) - modding api
 
-# It is important
+# It is important - FOR INTERIORS
 After importing the meshes into Unity, you need to set Read/Write to true.
+![image](https://user-images.githubusercontent.com/41182613/220408063-b53c5b1e-ea36-4c7c-8a3d-a5acefca33c9.png)
+
 
 # Extracting Unity Files
 1) Download an asset ripper. (I used AssetRipper found on Github)
