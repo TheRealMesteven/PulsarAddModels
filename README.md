@@ -27,8 +27,8 @@ After importing the meshes into Unity, you need to set Read/Write to true.
 (I attempted to use the Unity package FBX Exporter but couldnt get it to work, Dragon prompted me to AssetBundleExtractor which is a bit difficult to navigate for the meshes, however it still worked.)
 2) Find the mesh you want to manipulate (Dont worry about the materials etc yet) and export it to a format accepted by Blender. Such as .obj, .fbx etc.
 3) Import and manipulate in Blender.
-4) Export as a .fbx file (It holds the information about multiple meshes)
-5) Import the .fbx file into Unity and assign meshes etc.
+4) Export as a .fbx file (It holds the information about multiple materials)
+5) Import the .fbx file into Unity and assign materials etc.
 
 # Build Unity Bundle
 
