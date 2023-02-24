@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Steam\steamapps\common\PULSARLostColony\Mods\</OutputPath>
+    <OutputPath>D:\SteamLibrary\steamapps\common\PULSARLostColony\Mods\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -211,6 +211,7 @@
     <Compile Include="Features\Items\PLPawnItem_Melee.cs" />
     <Compile Include="Features\Items\PoorKatana.cs" />
     <Compile Include="Features\Items\SpaceEagle.cs" />
+    <Compile Include="Features\Items\SmugglersRifle.cs" />
     <Compile Include="Features\PawnAppearance\Patch.cs" />
     <Compile Include="Features\Ships\Patches.cs" />
     <Compile Include="Features\Ships\UfoShip.cs" />

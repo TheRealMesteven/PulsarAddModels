@@ -15,13 +15,13 @@ MonoBehaviour:
   FirstLoad: 0
   ShowOnStartup: 1
   GameExecutable: PULSAR_LostColony.exe
-  GamePath: D:\Steam\steamapps\common\PULSARLostColony
+  GamePath: D:\SteamLibrary\steamapps\common\PULSARLostColonyPirate
   Is64Bit: 1
   DateTimeFormat: HH:mm:ss:fff
   CreatedDateFormat: MMM/dd HH:mm:ss
-  ShowLogWindow: 0
+  ShowLogWindow: 1
   MarkdownOpenMode: 1
-  SelectedPipeline: {fileID: 11400000, guid: b26ac317299407c44802f581bdd493ea, type: 2}
+  SelectedPipeline: {fileID: 0}
   SelectedManifest: {fileID: 0}
   QuickAccessPipelines:
   - {fileID: 11400000, guid: b26ac317299407c44802f581bdd493ea, type: 2}

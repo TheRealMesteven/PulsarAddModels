@@ -17,6 +17,12 @@ namespace PulsarExperiments
 		{
 			switch(arguments)
 			{
+				case "smugglerrifle":
+					{
+                        PulsarModLoader.Content.Items.ItemModManager.Instance.GetItemIDsFromName("SmugglersRifle", out int Main, out int Sub);
+                        PLNetworkManager.Instance.LocalPlayer.MyInventory.UpdateItem(PLServer.Instance.PawnInvItemIDCounter++, Main, Sub, 0, -1);
+                    }
+					break;
 				case "katana":
 					{
 						PulsarModLoader.Content.Items.ItemModManager.Instance.GetItemIDsFromName("PoorKatana", out int Main, out int Sub);

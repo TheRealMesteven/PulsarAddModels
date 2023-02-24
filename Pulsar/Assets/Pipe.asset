@@ -16,8 +16,8 @@ MonoBehaviour:
   PerManifest: 0
   ListType: 0
   Manifests: []
-  workingDirectory: D:\Steam\steamapps\common\PULSARLostColonyPirate
-  executable: D:\Steam\steamapps\common\PULSARLostColonyPirate\PULSAR_LostColony.exe
+  workingDirectory: D:\SteamLibrary\steamapps\common\PULSARLostColonyPirate
+  executable: D:\SteamLibrary\steamapps\common\PULSARLostColonyPirate\Mods
   arguments: []
 --- !u!114 &11400000
 MonoBehaviour:
@@ -53,4 +53,4 @@ MonoBehaviour:
   buildTarget: 5
   recurseDirectories: 0
   simulate: 0
-  BundleArtifactPath: D:\Steam\steamapps\common\PULSARLostColony\Mods
+  BundleArtifactPath: D:\SteamLibrary\steamapps\common\PULSARLostColony\Mods

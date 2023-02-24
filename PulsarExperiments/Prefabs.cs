@@ -10,7 +10,13 @@ namespace PulsarExperiments
 	{
 		public static GameObject SpaceEagle;
 
-		public static GameObject Katana;
+		public static GameObject SmugglersRifle;
+		public static Material Leather;
+        public static Material Generic_15;
+        public static Material Generic_16_Dark;
+        public static Material RazorCrystal_Green;
+
+        public static GameObject Katana;
 		public static GameObject FireAxe;
 		public static GameObject Knife;
 
@@ -35,7 +41,39 @@ namespace PulsarExperiments
 			if (SpaceEagle == null)
 				throw new Exception("Cant load SpaceEagle!");
 
-			Katana = bundle.LoadAsset<GameObject>("KatanaPrefab");
+            SmugglersRifle = bundle.LoadAsset<GameObject>("Smugglers Rifle Prefab");
+            if (SmugglersRifle == null)
+                throw new Exception("Cant load SmugglersRifle!");
+			/*
+            Leather = bundle.LoadAsset<Material>("Generic_16_Leather 1");
+			if (Leather == null)
+			{
+                SmugglersTommyGun.GetComponent<Renderer>().materials[0] = Leather;
+                throw new Exception("Cant load material Leather!");
+			}
+
+            Generic_15 = bundle.LoadAsset<Material>("Generic_15");
+			if (Generic_15 == null)
+			{
+                SmugglersTommyGun.GetComponent<Renderer>().materials[2] = Generic_15;
+                throw new Exception("Cant load material Generic_15!");
+			}
+
+            Generic_16_Dark = bundle.LoadAsset<Material>("Generic_16_Dark");
+			if (Generic_16_Dark == null)
+			{
+                SmugglersTommyGun.GetComponent<Renderer>().materials[1] = Generic_16_Dark;
+                throw new Exception("Cant load material Generic_16_Dark!");
+			}
+
+            RazorCrystal_Green = bundle.LoadAsset<Material>("RazorCrystal_Green");
+			if (RazorCrystal_Green == null)
+			{
+                SmugglersTommyGun.GetComponent<Renderer>().materials[3] = RazorCrystal_Green;
+                throw new Exception("Cant load material RazorCrystal_Green!");
+			}
+			*/
+            Katana = bundle.LoadAsset<GameObject>("KatanaPrefab");
 			if (Katana == null)
 				throw new Exception("Cant load Katana!");
 
@@ -71,7 +109,8 @@ namespace PulsarExperiments
 
 			PhotonNetwork.PrefabCache.Add("NetworkPrefabs/UFO", ScaryyyyUfo);
 			PhotonNetwork.PrefabCache.Add("NetworkPrefabs/UFOWithInterior", UfoWithInterior);
-		}
+			
+        }
 	}
 
 	[HarmonyPatch]
