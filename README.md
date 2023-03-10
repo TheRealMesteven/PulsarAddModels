@@ -22,7 +22,14 @@ After importing the meshes into Unity, you need to set Read/Write to true.
 # Extracting Unity Files
 1) Download an asset ripper. (I used AssetRipper found on Github)
 2) In AssetRipper select all the .asset, .ress and any files that could relate to Assets and Meshes. (I used it on the Entire Game Folder)
-3) Move all the Asset files from the exporter to a Unity Project.
+3) Move all the Asset files from the exporter to a Unity Project if you want to browse through the entire game. For extracting meshes in general, you only need the folders:
+  - Material
+  - Mesh
+  - Resources
+  - Scripts (This one is temporary, just to get the script properties, need to manually recreate them with the Thunderkit script references)
+  - Shader
+  - Texture2D
+
 
 # Modifying Existing Meshes
 1) Download an asset extractor which converts the files to a format accepted by Blender. Such as .obj, .fbx etc.
