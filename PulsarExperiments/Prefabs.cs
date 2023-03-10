@@ -41,9 +41,9 @@ namespace PulsarExperiments
 			if (SpaceEagle == null)
 				throw new Exception("Cant load SpaceEagle!");
 
-            SmugglersRifle = bundle.LoadAsset<GameObject>("Smugglers Rifle Prefab");
-            if (SmugglersRifle == null)
-                throw new Exception("Cant load SmugglersRifle!");
+			SmugglersRifle = bundle.LoadAsset<GameObject>("Smugglers Rifle Prefab");
+			if (SmugglersRifle == null)
+				throw new Exception("Cant load SmugglersRifle!");
 			/*
             Leather = bundle.LoadAsset<Material>("Generic_16_Leather 1");
 			if (Leather == null)
@@ -73,7 +73,7 @@ namespace PulsarExperiments
                 throw new Exception("Cant load material RazorCrystal_Green!");
 			}
 			*/
-            Katana = bundle.LoadAsset<GameObject>("KatanaPrefab");
+			Katana = bundle.LoadAsset<GameObject>("KatanaPrefab");
 			if (Katana == null)
 				throw new Exception("Cant load Katana!");
 
@@ -106,8 +106,15 @@ namespace PulsarExperiments
 
 			Features.PawnAppearance.Patch.AddRobotFaces.Add(bundle.LoadAsset<Mesh>("Pyro"));
 			Features.PawnAppearance.Patch.AddRobotFaces.Add(bundle.LoadAsset<Mesh>("sphere"));
+			Mesh MaleOutfit = bundle.LoadAsset<Mesh>("WD Admiral Uniform");
+			if (MaleOutfit == null)
+				throw new Exception("Cant load Male Outfit!");
+			else 
+			{ 
+				Features.PawnAppearance.Patch.AddMaleUniforms.Add(MaleOutfit);
+			}
 
-			PhotonNetwork.PrefabCache.Add("NetworkPrefabs/UFO", ScaryyyyUfo);
+            PhotonNetwork.PrefabCache.Add("NetworkPrefabs/UFO", ScaryyyyUfo);
 			PhotonNetwork.PrefabCache.Add("NetworkPrefabs/UFOWithInterior", UfoWithInterior);
 			
         }
