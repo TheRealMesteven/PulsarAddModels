@@ -35,7 +35,7 @@ After importing the meshes into Unity, you need to set Read/Write to true.
 2) Open the Unity project with the extracted unity files in the assets.
 3) Import the game scripts with ThunderKit.
 4) Put the GameObjects you want to edit into the scene.
-5) Go to `Edit-Preferences` in the project and disable `Auto Refresh`.
+Findout how to disable Asset refreshing when deleting the scripts in assets :c
 6) Delete the files within the `Scripts` folder. (Ensure you have a backup if you want to do multiple GameObjects)
 7) Copy the scripts into new ThunderKit game scripts.
 8) Save prefab and export like normal.
