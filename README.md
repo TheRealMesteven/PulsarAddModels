@@ -27,6 +27,7 @@ After importing the meshes into Unity, you need to set Read/Write to true.
   - Mesh
   - Resources
   - Scripts (This one is temporary, just to get the script properties, need to manually recreate them with the Thunderkit script references)
+Decline the API update when messing around with script adding and removing
   - Shader
   - Texture2D
 
