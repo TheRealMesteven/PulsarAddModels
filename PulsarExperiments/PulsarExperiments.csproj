@@ -203,6 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands.cs" />
+    <Compile Include="Features\ColouredBolts.cs" />
     <Compile Include="Features\Items\EngTablet.cs" />
     <Compile Include="Features\Items\FireAxe.cs" />
     <Compile Include="Features\Items\Helpers\HitOnCollide.cs" />

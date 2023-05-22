@@ -23,7 +23,12 @@ namespace PulsarExperiments.Features.Items
                 AmmoMax = 30;
                 AmmoCurrent = 30;
             }
-
+            protected override GameObject CreateBoltGO()
+            {
+                GameObject Bolt = base.CreateBoltGO();
+                Bolt.GetComponent<PLBolt>().AddData(new BoltColourData(this.MyGunInstance.MuzzleFlash.main.startColor.color));
+                return Bolt;
+            }
             protected override GameObject GetGunPrefab() => Prefabs.SmugglersRifle;
 
             protected override float CalcDamageDone() => 38f + 8f * (float)base.Level;
