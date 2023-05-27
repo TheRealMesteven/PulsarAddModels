@@ -211,6 +211,7 @@
     <Compile Include="Features\Items\Knife.cs" />
     <Compile Include="Features\Items\PLPawnItem_Melee.cs" />
     <Compile Include="Features\Items\PoorKatana.cs" />
+    <Compile Include="Features\Items\BlackDesertEagle.cs" />
     <Compile Include="Features\Items\SpaceEagle.cs" />
     <Compile Include="Features\Items\SmugglersRifle.cs" />
     <Compile Include="Features\PawnAppearance\Patch.cs" />
