@@ -138,6 +138,17 @@ namespace PulsarExperiments
                 new Vector3(0.14f, 0.17f, 0.132f)
             ));
 			Features.PawnAppearance.Patch.AddMaleHair.Add(Mohawk);
+
+            GameObject Scruffy = bundle.LoadAsset<GameObject>("HumanFemale_Hair_05_0");
+            if (Scruffy == null)
+                throw new Exception("Cant load Scruffy!");
+            Features.PawnAppearance.PatchHairTransform.HairTransform.Add(Scruffy.name, new SizeChanges
+            (
+                new Vector3(0f, -0.04f, 0.005f),
+                Quaternion.identity,
+                new Vector3(0.126f, 0.132f, 0.155f)
+            ));
+            Features.PawnAppearance.Patch.AddMaleHair.Add(Scruffy);
         }
 	}
 
