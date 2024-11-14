@@ -4,6 +4,8 @@ using UnityEngine;
 using HarmonyLib;
 using System.Reflection;
 using System.Linq;
+using PulsarExperiments.Features.PawnAppearance;
+using System.Collections.Generic;
 
 namespace PulsarExperiments
 {
@@ -116,19 +118,26 @@ namespace PulsarExperiments
 			Mesh MaleOutfit = bundle.LoadAsset<Mesh>("WD_Uniform_01_Male_2");
 			if (MaleOutfit == null)
 				throw new Exception("Cant load Male Outfit!");
-
 			Features.PawnAppearance.Patch.AddMaleUniforms.Add(MaleOutfit);
 
             Mesh RobotOutfit = bundle.LoadAsset<Mesh>("HumanoidDrone_01");
             if (RobotOutfit == null)
                 throw new Exception("Cant load Robot Outfit!");
-
             Features.PawnAppearance.Patch.AddMaleUniforms.Add(RobotOutfit);
 
             PhotonNetwork.PrefabCache.Add("NetworkPrefabs/UFO", ScaryyyyUfo);
 			PhotonNetwork.PrefabCache.Add("NetworkPrefabs/UFOWithInterior", UfoWithInterior);
-			
-			
+
+            GameObject Mohawk = bundle.LoadAsset<GameObject>("HumanFemale_Hair_03_0");
+            if (Mohawk == null)
+                throw new Exception("Cant load Mohawk!");
+            Features.PawnAppearance.PatchHairTransform.HairTransform.Add(Mohawk.name, new SizeChanges
+			(
+                new Vector3(0f, -0.102f, 0.015f),
+                Quaternion.identity,
+                new Vector3(0.14f, 0.17f, 0.132f)
+            ));
+			Features.PawnAppearance.Patch.AddMaleHair.Add(Mohawk);
         }
 	}
 

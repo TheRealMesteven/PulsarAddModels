@@ -1,19 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using HarmonyLib;
 using UnityEngine;
-using UnityEngine.Bindings;
-using System.Diagnostics;
+using static PulsarModLoader.Patches.HarmonyHelpers;
+using static HarmonyLib.AccessTools;
+using System.Reflection.Emit;
 
 namespace PulsarExperiments.Features.PawnAppearance
 {
-	[HarmonyPatch(typeof(PLCustomPawn))]
+    #region Adding options to list
+    [HarmonyPatch(typeof(PLCustomPawn))]
 	public class Patch
 	{
 		public static List<Mesh> AddRobotFaces = new List<Mesh>();
-		public static List<Mesh> AddMaleUniforms = new List<Mesh>();
+        public static List<GameObject> AddMaleHair = new List<GameObject>();
+        public static List<GameObject> AddFemaleHair = new List<GameObject>();
+        public static List<Mesh> AddMaleUniforms = new List<Mesh>();
         public static List<Mesh> AddFemaleUniforms = new List<Mesh>();
         public static List<Mesh> AddRobotUniforms = new List<Mesh>();
 
@@ -21,6 +24,7 @@ namespace PulsarExperiments.Features.PawnAppearance
 		static void Start(PLCustomPawn __instance)
 		{
 			__instance.StartCoroutine(Instance.SetFaceMeshes(__instance));
+            __instance.StartCoroutine(Instance.SetHairPrefabs(__instance));
             __instance.StartCoroutine(Instance.SetUniformMeshes(__instance));
         }
 
@@ -39,6 +43,29 @@ namespace PulsarExperiments.Features.PawnAppearance
 
 			yield break;
 		}
+
+        IEnumerator SetHairPrefabs(PLCustomPawn __instance)
+        {
+            while (__instance.MyPawn == null || __instance.MyPawn.MyPlayer == null)
+                yield return null;
+
+            var HairGameObjects = __instance.HairPrefabs.ToList();
+            if (__instance.MyPawn.m_MyPlayer.RaceID == 0) // for humans
+            {
+                if (__instance.MyPawn.m_MyPlayer.Gender_IsMale)
+                {
+                    HairGameObjects.AddRange(AddMaleHair);
+                }
+                else
+                {
+                    HairGameObjects.AddRange(AddFemaleHair);
+                }
+            }
+            __instance.HairPrefabs = HairGameObjects.ToArray();
+
+            yield break;
+        }
+
         IEnumerator SetUniformMeshes(PLCustomPawn __instance)
         {
             while (__instance.MyPawn == null || __instance.MyPawn.MyPlayer == null)
@@ -70,4 +97,59 @@ namespace PulsarExperiments.Features.PawnAppearance
         private Patch() { }
 		private static Patch Instance = new Patch();
 	}
+    #endregion
+    #region Patching scaling changes
+    public struct SizeChanges
+    {
+        public Vector3 Position;
+        public Quaternion Rotation;
+        public Vector3 Scale;
+        public SizeChanges(Vector3 _position, Quaternion _rotation, Vector3 _scale)
+        {
+            Position = _position;
+            Rotation = _rotation;
+            Scale = _scale;
+        }
+    }
+
+    [HarmonyPatch(typeof(PLCustomPawn), "BeforeUpdate")]
+    class PatchHairTransform
+    {
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            List<CodeInstruction> target = new List<CodeInstruction>()
+            {
+                new CodeInstruction(OpCodes.Ldarg_0),
+                new CodeInstruction(OpCodes.Ldfld, Field(typeof(PLCustomPawn), "CurrentHairObj")),
+                new CodeInstruction(OpCodes.Callvirt),
+                new CodeInstruction(OpCodes.Call),
+                new CodeInstruction(OpCodes.Callvirt, Method(typeof(UnityEngine.Transform), "set_localScale")),
+            }; // this.CurrentHairObj.transform.localScale = Vector3.one;
+
+            int LabelIndex = FindSequence(instructions, target, CheckMode.NONNULL);
+
+            List<CodeInstruction> patch = new List<CodeInstruction>()
+            {
+                new CodeInstruction(OpCodes.Ldarg_0), // this
+                instructions.ToList()[LabelIndex - 4], // CurrentHairObj
+                /*new CodeInstruction(OpCodes.Ldarg_0), // this
+                instructions.ToList()[LabelIndex - 25], // HairID*/
+                new CodeInstruction(OpCodes.Callvirt, Method(typeof(PatchHairTransform), "Patch"))
+            };
+
+            return PatchBySequence(instructions, target, patch, PatchMode.AFTER, CheckMode.NONNULL, showDebugOutput: false);
+        }
+        public static Dictionary<string, SizeChanges> HairTransform = new Dictionary<string, SizeChanges>();
+        public static void Patch(GameObject CurrentHairObj)
+        {
+            string trimmedName = CurrentHairObj.name.Replace("(Clone)", "");
+            if (HairTransform.ContainsKey(trimmedName))
+            {
+                CurrentHairObj.transform.localPosition = HairTransform[trimmedName].Position;
+                CurrentHairObj.transform.localRotation = HairTransform[trimmedName].Rotation;
+                CurrentHairObj.transform.localScale = HairTransform[trimmedName].Scale;
+            }
+        }
+    }
+    #endregion
 }
