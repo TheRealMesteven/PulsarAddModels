@@ -119,6 +119,12 @@ namespace PulsarExperiments
 
 			Features.PawnAppearance.Patch.AddMaleUniforms.Add(MaleOutfit);
 
+            Mesh RobotOutfit = bundle.LoadAsset<Mesh>("HumanoidDrone_01");
+            if (RobotOutfit == null)
+                throw new Exception("Cant load Robot Outfit!");
+
+            Features.PawnAppearance.Patch.AddMaleUniforms.Add(RobotOutfit);
+
             PhotonNetwork.PrefabCache.Add("NetworkPrefabs/UFO", ScaryyyyUfo);
 			PhotonNetwork.PrefabCache.Add("NetworkPrefabs/UFOWithInterior", UfoWithInterior);
 			
