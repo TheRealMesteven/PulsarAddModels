@@ -14,9 +14,12 @@ An example of the implementation of scary things. (Scary - because the code is s
 [ThunderKit](https://github.com/PassivePicasso/ThunderKit) - game dll import & asset build script
 [PML](https://github.com/PULSAR-Modders/pulsar-mod-loader) - modding api
 
-# It is important - FOR INTERIORS
+# It is important - FOR INTERIORS AND BODIES
 After importing the meshes into Unity, you need to set Read/Write to true.
 ![image](https://user-images.githubusercontent.com/41182613/220408063-b53c5b1e-ea36-4c7c-8a3d-a5acefca33c9.png)
+
+If you dont do it with bodies then itll be invisible but visible in the thumbnail. And if you dont have the skin bones then the body will T-pose with the head between the legs.
+Still not too sure on how to setup my own skin bones but using the meshes from the game allows me to already have skin attached.
 
 
 # Extracting Unity Files
