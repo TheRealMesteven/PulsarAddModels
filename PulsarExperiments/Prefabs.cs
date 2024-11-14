@@ -3,6 +3,7 @@ using System.IO;
 using UnityEngine;
 using HarmonyLib;
 using System.Reflection;
+using System.Linq;
 
 namespace PulsarExperiments
 {
@@ -35,7 +36,7 @@ namespace PulsarExperiments
 			if (bundle != null)
 				bundle.Unload(true);
 
-			var assetbundlePath = Path.Combine(new FileInfo(typeof(Prefabs).Assembly.Location).Directory.FullName, "experiments.bundle");
+			var assetbundlePath = PulsarModLoader.ModManager.GetModsDir() + "\\experiments.bundle";
 			bundle = AssetBundle.LoadFromFile(assetbundlePath);
 
 			SpaceEagle = bundle.LoadAsset<GameObject>("SpaceEaglePrefab");
@@ -108,9 +109,10 @@ namespace PulsarExperiments
 
 			//foreach (var i in bundle.LoadAllAssets<Mesh>())
 			//	PulsarModLoader.Utilities.Logger.Info($"{i.name}");
-
+			
 			Features.PawnAppearance.Patch.AddRobotFaces.Add(bundle.LoadAsset<Mesh>("Pyro"));
 			Features.PawnAppearance.Patch.AddRobotFaces.Add(bundle.LoadAsset<Mesh>("sphere"));
+
 			Mesh MaleOutfit = bundle.LoadAsset<Mesh>("WD Admiral Uniform");
 			if (MaleOutfit == null)
 				throw new Exception("Cant load Male Outfit!");
@@ -118,9 +120,11 @@ namespace PulsarExperiments
 			{ 
 				Features.PawnAppearance.Patch.AddMaleUniforms.Add(MaleOutfit);
 			}
+			PulsarModLoader.Utilities.Logger.Info($"[Outfit Details] {MaleOutfit.name} | {MaleOutfit.triangles.Count()}");
 
             PhotonNetwork.PrefabCache.Add("NetworkPrefabs/UFO", ScaryyyyUfo);
 			PhotonNetwork.PrefabCache.Add("NetworkPrefabs/UFOWithInterior", UfoWithInterior);
+			
 			
         }
 	}
