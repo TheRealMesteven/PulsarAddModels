@@ -113,14 +113,11 @@ namespace PulsarExperiments
 			Features.PawnAppearance.Patch.AddRobotFaces.Add(bundle.LoadAsset<Mesh>("Pyro"));
 			Features.PawnAppearance.Patch.AddRobotFaces.Add(bundle.LoadAsset<Mesh>("sphere"));
 
-			Mesh MaleOutfit = bundle.LoadAsset<Mesh>("WD Admiral Uniform");
+			Mesh MaleOutfit = bundle.LoadAsset<Mesh>("WD_Uniform_01_Male_2");
 			if (MaleOutfit == null)
 				throw new Exception("Cant load Male Outfit!");
-			else 
-			{ 
-				Features.PawnAppearance.Patch.AddMaleUniforms.Add(MaleOutfit);
-			}
-			PulsarModLoader.Utilities.Logger.Info($"[Outfit Details] {MaleOutfit.name} | {MaleOutfit.triangles.Count()}");
+
+			Features.PawnAppearance.Patch.AddMaleUniforms.Add(MaleOutfit);
 
             PhotonNetwork.PrefabCache.Add("NetworkPrefabs/UFO", ScaryyyyUfo);
 			PhotonNetwork.PrefabCache.Add("NetworkPrefabs/UFOWithInterior", UfoWithInterior);
